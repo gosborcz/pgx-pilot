@@ -1,7 +1,8 @@
-# pgx-pilot
+# preparing the vcf for pharmcat:
 
-` awk -F'\t' -vOFS='\t' '{ gsub("MIN_DP", "DP", $9) ; print }' ` replace MIN_DP with DP
+The files need to be prepared according to this scheme:
 
-
-(error: Caused by: org.pharmgkb.pharmcat.ParseException: Problem at chr1:97515686:
-Don't know how to handle alt structural variant '<NON_REF>')
+`java -jar GenomeAnalysisTK.jar -T HaplotypeCaller  \
+     -R grc38.reference.fasta -I input.bam -o output.vcf \
+     -L pharmcat_intervals.txt -glm BOTH --output_mode EMIT_ALL_SITES`
+   
