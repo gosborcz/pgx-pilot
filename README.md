@@ -6,3 +6,7 @@ The files need to be prepared according to this scheme:
      
   run with GATK 3.7
    
+   
+   i tried preparing vcf file according to pharmcat:
+   
+    Not a VCF file: no ##fileformat line
