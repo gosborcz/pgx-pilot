@@ -9,6 +9,10 @@
 
 note: *all run with GATK 4.1.3.0*
 
+### Run pharmcat:
+`java -jar <path_to_jar_file> -vcf <sample_file> -o <output_dir>`
+
+
 ### Produce the vcf from pharmcat:
 
 ```
