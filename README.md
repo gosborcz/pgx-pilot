@@ -12,8 +12,11 @@ note: *all run with GATK 4.1.3.0*
 ### Run pharmcat:
 `java -jar <path_to_jar_file> -vcf <sample_file> -o <output_dir>`
 
+-------------------------------------------------------------------------------------------------------------------------
+the following steps were not performed and deletions were skipped in the preliminary analysis for now
 
-### Produce the vcf from pharmcat:
+
+#### Produce the vcf from pharmcat:
 
 ```
 module load plgrid/tools/vcftools
@@ -24,8 +27,7 @@ java -cp pharmcat-0.7.0-all.jar org.pharmgkb.pharmcat.definition.ExtractPosition
     bcftools sort -o pgx_sorted.vcf.gz -O z pgx.vcf.gz && tabix -p vcf pgx_sorted.vcf.gz
 ```
 
-
-
+#### optional script to deal with problematic sites:
 ```
 cat sample.vcf | cut -f 1-10 | grep -v "|" | sed 's/\tInf\t/\t10000\t/' | sed 's/\tK,T/\tT/' | sed 's/\tG,K/\tG/' | sed 's/\tM,C/\tC/' | sed 's/\tG,S/\tG/' | sed 's/\tS,G/\tG/' | sed 's/\tC,S/\tC/' | sed 's/\tS,C/\tC/' | sed 's/\tC,M/\tM/' | sed 's/\tM\t/\tC\t/g' | sed 's/\tK,G/\tG/' | sed 's/INSGGGGCGAAAGGGGCGAAA,AGGGGCGAAA/\./' | grep -v "INSGGGGCGAAAGGGGCGAAA" | sed 's/\tT,K/\t./' | grep -v "rs72549353" | grep -v "\.T" | grep -v "\.AG" | grep -v "\.CT" > samplei.vcf
 ```
